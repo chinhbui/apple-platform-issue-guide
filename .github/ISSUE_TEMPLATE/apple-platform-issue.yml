@@ -1,0 +1,90 @@
+name: Apple platform issue
+description: Capture an Apple-reported or reproducible platform issue and its engineering guideline.
+title: "[Area] "
+labels:
+  - status:investigating
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this issue to turn an Apple source or reproducible behavior into an actionable engineering guide.
+
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: Apple Developer Forums, documentation, release notes, WWDC, DTS, or another authoritative source.
+      placeholder: |
+        Apple Developer Forums: https://developer.apple.com/forums/thread/...
+        Apple documentation: https://developer.apple.com/documentation/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the observable engineering problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: |
+        - iOS / tvOS version:
+        - Framework:
+        - API:
+        - Streaming format:
+        - Content type:
+
+  - type: textarea
+    id: symptoms
+    attributes:
+      label: Symptoms
+      description: Logs, notifications, error codes, playback behavior, or other observable signals.
+
+  - type: dropdown
+    id: evidence
+    attributes:
+      label: Evidence level
+      options:
+        - Apple Confirmed
+        - Reproduced
+        - Inferred
+    validations:
+      required: true
+
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Cause / Explanation
+      description: Explain what is known. Explicitly distinguish Apple-confirmed behavior from inference.
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution / Guideline
+      description: State the recommended engineering behavior or workaround.
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Example
+      description: Optional minimal code, manifest, request, response, or log example.
+      render: shell
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: Reproduction or validation steps and expected signals.
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Additional Apple docs, WWDC sessions, standards, or related issues.
