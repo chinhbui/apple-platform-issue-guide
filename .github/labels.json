@@ -1,0 +1,46 @@
+{
+  "labels": [
+    {"name":"framework/avfoundation","color":"1D76DB","description":"Apple AVFoundation framework","aliases":["framework:avfoundation"]},
+    {"name":"framework/avkit","color":"1D76DB","description":"Apple AVKit framework","aliases":["framework:avkit"]},
+    {"name":"framework/coremedia","color":"1D76DB","description":"Apple CoreMedia framework","aliases":["framework:coremedia"]},
+    {"name":"framework/videotoolbox","color":"1D76DB","description":"Apple VideoToolbox framework","aliases":["framework:videotoolbox"]},
+    {"name":"framework/network","color":"1D76DB","description":"Apple networking framework or API","aliases":["framework:network"]},
+    {"name":"framework/uikit","color":"1D76DB","description":"Apple UIKit framework","aliases":["framework:uikit"]},
+
+    {"name":"area/hls","color":"0052CC","description":"HTTP Live Streaming","aliases":["area:hls"]},
+    {"name":"area/ll-hls","color":"0052CC","description":"Low-Latency HLS","aliases":["area:ll-hls"]},
+    {"name":"area/fairplay","color":"0052CC","description":"FairPlay Streaming","aliases":["area:fairplay"]},
+    {"name":"area/abr","color":"0052CC","description":"Adaptive bitrate selection and switching","aliases":["area:abr"]},
+    {"name":"area/drm","color":"0052CC","description":"Digital rights management","aliases":["area:drm"]},
+    {"name":"area/playback","color":"0052CC","description":"Media playback behavior","aliases":["area:playback"]},
+    {"name":"area/networking","color":"0052CC","description":"Networking behavior affecting Apple clients","aliases":["area:networking"]},
+
+    {"name":"kind/bug","color":"E11D21","description":"Unexpected or incorrect behavior","aliases":["type:bug"]},
+    {"name":"kind/regression","color":"E11D21","description":"Behavior regressed from a prior release","aliases":[]},
+    {"name":"kind/platform-behavior","color":"5319E7","description":"Platform behavior worth documenting","aliases":["type:platform-behavior"]},
+    {"name":"kind/known-issue","color":"D93F0B","description":"Known platform or framework issue","aliases":["type:known-issue"]},
+    {"name":"kind/guideline","color":"C7DEF8","description":"Engineering guidance or recommended practice","aliases":["type:guideline"]},
+    {"name":"kind/documentation-gap","color":"0075CA","description":"Public documentation is missing or unclear","aliases":["type:documentation-gap"]},
+
+    {"name":"evidence/apple-confirmed","color":"0E8A16","description":"Explicitly supported by Apple documentation, DTS, or engineering","aliases":["evidence:apple-confirmed"]},
+    {"name":"evidence/reproduced","color":"2EA44F","description":"Consistently reproduced in controlled testing","aliases":["evidence:reproduced","status:reproduced"]},
+    {"name":"evidence/inferred","color":"FBCA04","description":"Conclusion inferred from observations or experiments","aliases":["evidence:inferred"]},
+
+    {"name":"source/apple-forum","color":"C5DEF5","description":"Source includes an Apple Developer Forums thread","aliases":["evidence:apple-forum"]},
+    {"name":"source/apple-docs","color":"C5DEF5","description":"Source includes Apple documentation","aliases":["evidence:documentation"]},
+    {"name":"source/apple-release-notes","color":"C5DEF5","description":"Source includes Apple release notes","aliases":["evidence:release-notes"]},
+    {"name":"source/wwdc","color":"C5DEF5","description":"Source includes a WWDC session","aliases":["evidence:wwdc"]},
+
+    {"name":"platform/ios","color":"0E8A16","description":"Applies to iOS","aliases":["platform:ios"]},
+    {"name":"platform/ipados","color":"1A7F37","description":"Applies to iPadOS","aliases":["platform:ipados"]},
+    {"name":"platform/tvos","color":"006B75","description":"Applies to tvOS","aliases":["platform:tvos"]},
+    {"name":"platform/macos","color":"0366D6","description":"Applies to macOS","aliases":["platform:macos"]},
+
+    {"name":"triage/needs-evidence","color":"EDEDED","description":"Needs stronger evidence or a reproducible discriminator","aliases":[]},
+    {"name":"triage/investigating","color":"F28907","description":"Root cause or platform boundary is still under investigation","aliases":["status:investigating"]},
+    {"name":"triage/root-cause-known","color":"8FC951","description":"Root-cause boundary or governing behavior is established","aliases":["status:confirmed"]},
+
+    {"name":"resolution/workaround","color":"FBCA04","description":"A practical workaround or mitigation is available","aliases":["type:workaround","status:workaround"]},
+    {"name":"resolution/resolved","color":"0E8A16","description":"Investigation is resolved and guidance is stable","aliases":["status:resolved"]}
+  ]
+}
