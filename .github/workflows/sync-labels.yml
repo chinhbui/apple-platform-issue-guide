@@ -1,0 +1,159 @@
+name: Sync issue labels
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/labels.json"
+      - ".github/workflows/sync-labels.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate label taxonomy
+        shell: bash
+        run: |
+          set -euo pipefail
+          jq -e '
+            (.labels | type == "array") and
+            (.labels | length > 0) and
+            (all(.labels[];
+              (.name | type == "string" and length > 0) and
+              (.color | type == "string" and test("^[0-9A-Fa-f]{6}$")) and
+              (.description | type == "string" and length <= 100) and
+              (.aliases | type == "array") and
+              (all(.aliases[]; type == "string" and length > 0))
+            )) and
+            (([.labels[].name] | unique | length) == (.labels | length))
+          ' .github/labels.json > /dev/null
+
+      - name: Create, recolor, describe, and migrate labels
+        env:
+          GH_TOKEN: ${{ secrets.REPO_ADMIN_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          repo="${{ github.repository }}"
+          config=".github/labels.json"
+
+          urlencode() {
+            jq -rn --arg value "$1" '$value | @uri'
+          }
+
+          label_exists() {
+            local encoded
+            encoded=$(urlencode "$1")
+            gh api "repos/$repo/labels/$encoded" > /dev/null 2>&1
+          }
+
+          update_label() {
+            local name="$1" color="$2" description="$3"
+            local encoded
+            encoded=$(urlencode "$name")
+            gh api \
+              --method PATCH \
+              "repos/$repo/labels/$encoded" \
+              -f new_name="$name" \
+              -f color="$color" \
+              -f description="$description" > /dev/null
+          }
+
+          create_label() {
+            local name="$1" color="$2" description="$3"
+            gh api \
+              --method POST \
+              "repos/$repo/labels" \
+              -f name="$name" \
+              -f color="$color" \
+              -f description="$description" > /dev/null
+          }
+
+          rename_label() {
+            local old="$1" new="$2" color="$3" description="$4"
+            local encoded
+            encoded=$(urlencode "$old")
+            gh api \
+              --method PATCH \
+              "repos/$repo/labels/$encoded" \
+              -f new_name="$new" \
+              -f color="$color" \
+              -f description="$description" > /dev/null
+          }
+
+          merge_alias_into_target() {
+            local old="$1" new="$2"
+            local encoded_old payload
+            encoded_old=$(urlencode "$old")
+            payload=$(jq -cn --arg label "$new" '{labels: [$label]}')
+
+            gh api \
+              --paginate \
+              "repos/$repo/issues?state=all&labels=$encoded_old&per_page=100" \
+              --jq '.[].number' | while read -r number; do
+                [ -z "$number" ] && continue
+                printf '%s' "$payload" | gh api \
+                  --method POST \
+                  "repos/$repo/issues/$number/labels" \
+                  --input - > /dev/null
+              done
+
+            gh api \
+              --method DELETE \
+              "repos/$repo/labels/$encoded_old" > /dev/null
+          }
+
+          while IFS= read -r item; do
+            name=$(jq -r '.name' <<< "$item")
+            color=$(jq -r '.color' <<< "$item")
+            description=$(jq -r '.description' <<< "$item")
+
+            if ! label_exists "$name"; then
+              renamed=false
+              while IFS= read -r alias; do
+                [ -z "$alias" ] && continue
+                if label_exists "$alias"; then
+                  rename_label "$alias" "$name" "$color" "$description"
+                  renamed=true
+                  break
+                fi
+              done < <(jq -r '.aliases[]?' <<< "$item")
+
+              if [ "$renamed" = false ]; then
+                create_label "$name" "$color" "$description"
+              fi
+            fi
+
+            update_label "$name" "$color" "$description"
+
+            while IFS= read -r alias; do
+              [ -z "$alias" ] && continue
+              [ "$alias" = "$name" ] && continue
+              if label_exists "$alias"; then
+                merge_alias_into_target "$alias" "$name"
+              fi
+            done < <(jq -r '.aliases[]?' <<< "$item")
+          done < <(jq -c '.labels[]' "$config")
+
+      - name: Mark known iOS regression
+        env:
+          GH_TOKEN: ${{ secrets.REPO_ADMIN_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          payload=$(jq -cn '{labels: ["kind/regression"]}')
+          printf '%s' "$payload" | gh api \
+            --method POST \
+            "repos/${{ github.repository }}/issues/2/labels" \
+            --input - > /dev/null
