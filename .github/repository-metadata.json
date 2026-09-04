@@ -1,0 +1,20 @@
+{
+  "description": "Evidence-graded engineering guide for diagnosing Apple media playback issues across AVFoundation, AVPlayer, HLS/LL-HLS, FairPlay, CoreMedia, iOS, tvOS, and macOS.",
+  "homepage": "",
+  "topics": [
+    "apple-platforms",
+    "ios",
+    "tvos",
+    "macos",
+    "avfoundation",
+    "avplayer",
+    "hls",
+    "ll-hls",
+    "fairplay-streaming",
+    "coremedia",
+    "media-playback",
+    "streaming",
+    "debugging",
+    "troubleshooting"
+  ]
+}
