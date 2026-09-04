@@ -1,0 +1,58 @@
+name: Sync repository metadata
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/repository-metadata.json"
+      - ".github/workflows/sync-repository-metadata.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate metadata
+        shell: bash
+        run: |
+          jq -e '
+            (.description | type == "string") and
+            (.homepage | type == "string") and
+            (.topics | type == "array") and
+            (all(.topics[]; type == "string"))
+          ' .github/repository-metadata.json > /dev/null
+
+      - name: Update repository description and homepage
+        env:
+          GH_TOKEN: ${{ secrets.REPO_ADMIN_TOKEN }}
+        shell: bash
+        run: |
+          DESCRIPTION=$(jq -r '.description' .github/repository-metadata.json)
+          HOMEPAGE=$(jq -r '.homepage' .github/repository-metadata.json)
+
+          gh api \
+            --method PATCH \
+            "repos/${{ github.repository }}" \
+            -f description="$DESCRIPTION" \
+            -f homepage="$HOMEPAGE"
+
+      - name: Update repository topics
+        env:
+          GH_TOKEN: ${{ secrets.REPO_ADMIN_TOKEN }}
+        shell: bash
+        run: |
+          TOPICS=$(jq -c '.topics' .github/repository-metadata.json)
+
+          jq -n --argjson names "$TOPICS" '{names: $names}' | \
+            gh api \
+              --method PUT \
+              "repos/${{ github.repository }}/topics" \
+              --input -
