@@ -40,7 +40,7 @@ jobs:
 
       - name: Create, recolor, describe, and migrate labels
         env:
-          GH_TOKEN: ${{ secrets.REPO_ADMIN_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
@@ -148,7 +148,7 @@ jobs:
 
       - name: Mark known iOS regression
         env:
-          GH_TOKEN: ${{ secrets.REPO_ADMIN_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
