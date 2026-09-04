@@ -11,7 +11,7 @@ This is **not an official Apple repository**. Behavior marked as inferred is an 
 - [Browse issues](https://github.com/chinhbui/apple-platform-issue-guide/issues) — search known symptoms, APIs, error codes, and platform behavior.
 - [Example investigation](examples/avplayer-live-edge.md) — see the expected structure of an engineering entry.
 - [Issue authoring guide](docs/issue-authoring-guide.md) — how to document a new issue.
-- [Label taxonomy](docs/labels.md) — framework, area, platform, evidence, type, and status labels.
+- [Label taxonomy](docs/labels.md) — framework, area, kind, evidence, source, platform, triage, and resolution labels.
 - [Contributing](CONTRIBUTING.md) — contribution and evidence requirements.
 
 ## What this repository provides
@@ -61,11 +61,11 @@ Examples:
 AVPlayer live edge
 CoreMedia -12888
 FairPlay key rotation
-label:"area:ll-hls" stall
-label:"platform:tvos" AVPlayer
+label:"area/ll-hls" stall
+label:"platform/tvos" AVPlayer
 ```
 
-Use the [label taxonomy](docs/labels.md) when you need to narrow results by framework, area, issue type, evidence, platform, or status.
+Use the [label taxonomy](docs/labels.md) when you need to narrow results by framework, area, kind, evidence, source, platform, triage, or resolution.
 
 ## Evidence model
 
