@@ -1,6 +1,6 @@
 {
   "description": "Evidence-graded engineering guide for diagnosing Apple media playback issues across AVFoundation, AVPlayer, HLS/LL-HLS, FairPlay, CoreMedia, iOS, tvOS, and macOS.",
-  "homepage": "",
+  "homepage": "https://chinhbui.github.io/apple-platform-issue-guide/",
   "topics": [
     "apple-platforms",
     "ios",
