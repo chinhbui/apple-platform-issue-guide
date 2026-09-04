@@ -6,6 +6,7 @@
   <title>Apple Platform Issue Guide</title>
   <meta name="description" content="Evidence-graded engineering guidance for diagnosing Apple platform media playback issues across AVFoundation, HLS, FairPlay, CoreMedia, iOS, and tvOS.">
   <link rel="canonical" href="https://chinhbui.github.io/apple-platform-issue-guide/">
+  <meta name="theme-color" content="#f8fafc">
   <meta property="og:title" content="Apple Platform Issue Guide">
   <meta property="og:description" content="Evidence-graded engineering guidance for diagnosing Apple media playback issues.">
   <meta property="og:type" content="website">
@@ -18,128 +19,216 @@
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="https://chinhbui.github.io/apple-platform-issue-guide/" aria-label="Apple Platform Issue Guide home">
-        <span class="brand-mark" aria-hidden="true">AP</span>
-        <span>Apple Platform Issue Guide</span>
+        <span class="brand-glyph" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="brand-copy">
+          <strong>Apple Platform</strong>
+          <small>Issue Guide</small>
+        </span>
       </a>
       <nav class="header-nav" aria-label="Primary">
+        <a href="#evidence">Evidence model</a>
         <a href="https://github.com/chinhbui/apple-platform-issue-guide/issues">Issues</a>
-        <a href="https://github.com/chinhbui/apple-platform-issue-guide">GitHub</a>
+        <a class="nav-repo" href="https://github.com/chinhbui/apple-platform-issue-guide">GitHub <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
 
   <main id="main">
     <section class="hero shell">
-      <p class="eyebrow">Evidence-graded engineering knowledge base</p>
-      <h1>Diagnose Apple media playback behavior with evidence, not folklore.</h1>
-      <p class="hero-copy">
-        A practical guide for investigating AVFoundation, AVPlayer, HLS and LL-HLS, FairPlay Streaming,
-        CoreMedia, and related behavior across Apple platforms.
-      </p>
-      <div class="actions">
-        <a class="button button-primary" href="https://github.com/chinhbui/apple-platform-issue-guide/issues">Browse issues</a>
-        <a class="button button-secondary" href="https://github.com/chinhbui/apple-platform-issue-guide">View repository on GitHub</a>
+      <div class="hero-copy-block">
+        <p class="eyebrow"><span aria-hidden="true">●</span> Evidence-graded engineering knowledge base</p>
+        <h1>Diagnose Apple media playback behavior with <em>evidence</em>, not folklore.</h1>
+        <p class="hero-copy">
+          A practical guide for investigating AVFoundation, AVPlayer, HLS and LL-HLS, FairPlay Streaming,
+          CoreMedia, and related behavior across Apple platforms.
+        </p>
+        <div class="actions">
+          <a class="button button-primary" href="https://github.com/chinhbui/apple-platform-issue-guide/issues">
+            Browse investigations <span aria-hidden="true">→</span>
+          </a>
+          <a class="button button-secondary" href="https://github.com/chinhbui/apple-platform-issue-guide">
+            View repository
+          </a>
+        </div>
+        <p class="notice">Independent engineering reference. Inferred behavior is an implementation observation, not an Apple platform contract.</p>
       </div>
-      <p class="notice">This is not an official Apple repository. Inferred behavior is an implementation observation, not an Apple platform contract.</p>
+
+      <aside class="trace-panel" aria-label="Investigation trace">
+        <div class="trace-head">
+          <span>INVESTIGATION TRACE</span>
+          <span>METHOD / 01</span>
+        </div>
+        <ol class="trace-list">
+          <li>
+            <span class="trace-node" aria-hidden="true"></span>
+            <span class="trace-code">OBSERVE</span>
+            <strong>Start with the failure you can measure.</strong>
+          </li>
+          <li>
+            <span class="trace-node" aria-hidden="true"></span>
+            <span class="trace-code">CAPTURE</span>
+            <strong>Collect logs, manifests, timing, and API state.</strong>
+          </li>
+          <li>
+            <span class="trace-node" aria-hidden="true"></span>
+            <span class="trace-code">GRADE</span>
+            <strong>Separate confirmed behavior from inference.</strong>
+          </li>
+          <li>
+            <span class="trace-node" aria-hidden="true"></span>
+            <span class="trace-code">LOCATE</span>
+            <strong>Find the platform boundary that owns it.</strong>
+          </li>
+          <li>
+            <span class="trace-node" aria-hidden="true"></span>
+            <span class="trace-code">VERIFY</span>
+            <strong>Define the test that can disprove the fix.</strong>
+          </li>
+        </ol>
+        <div class="trace-foot">
+          <span>OUTPUT</span>
+          <strong>Engineering guidance with an evidence trail.</strong>
+        </div>
+      </aside>
     </section>
 
     <section class="section shell" aria-labelledby="coverage-heading">
       <div class="section-heading">
-        <p class="eyebrow">Coverage</p>
-        <h2 id="coverage-heading">Focused on real playback failure boundaries</h2>
+        <p class="section-kicker">Coverage</p>
+        <h2 id="coverage-heading">Focused on the boundaries where playback actually fails.</h2>
       </div>
-      <div class="grid grid-three">
-        <article class="card">
+
+      <div class="coverage-grid">
+        <article class="coverage-item">
+          <div class="domain-code" aria-hidden="true">AVF</div>
           <h3>Playback</h3>
           <p>AVFoundation, AVPlayer, AVKit, media selection, stalls, live-edge behavior, and playback state.</p>
-          <div class="tags" aria-label="Playback topics">
+          <div class="topic-line" aria-label="Playback topics">
             <span>AVFoundation</span><span>AVPlayer</span><span>AVKit</span>
           </div>
         </article>
-        <article class="card">
+        <article class="coverage-item">
+          <div class="domain-code" aria-hidden="true">HLS</div>
           <h3>Streaming</h3>
           <p>HLS, LL-HLS, ABR, alternate audio, playlist freshness, live latency, and rendition switching.</p>
-          <div class="tags" aria-label="Streaming topics">
+          <div class="topic-line" aria-label="Streaming topics">
             <span>HLS</span><span>LL-HLS</span><span>ABR</span>
           </div>
         </article>
-        <article class="card">
+        <article class="coverage-item">
+          <div class="domain-code" aria-hidden="true">FPS</div>
           <h3>DRM &amp; media pipeline</h3>
           <p>FairPlay Streaming, content-key lifecycle, CoreMedia, VideoToolbox, and encrypted playback diagnostics.</p>
-          <div class="tags" aria-label="DRM and media topics">
+          <div class="topic-line" aria-label="DRM and media topics">
             <span>FairPlay</span><span>CoreMedia</span><span>VideoToolbox</span>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section section-muted" aria-labelledby="evidence-heading">
-      <div class="shell">
-        <div class="section-heading">
-          <p class="eyebrow">Evidence model</p>
-          <h2 id="evidence-heading">Every conclusion states how strongly it is supported</h2>
+    <section class="evidence-section" id="evidence" aria-labelledby="evidence-heading">
+      <div class="shell evidence-layout">
+        <div class="section-heading evidence-intro">
+          <p class="section-kicker">Evidence model</p>
+          <h2 id="evidence-heading">Every conclusion says how strongly it is supported.</h2>
+          <p>Platform guidance is only useful when the reader can see the boundary between documented contract, repeatable observation, and engineering inference.</p>
         </div>
-        <div class="grid grid-three evidence-grid">
-          <article class="evidence-card evidence-confirmed">
-            <p class="status">Apple Confirmed</p>
-            <p>Supported by Apple documentation, release notes, WWDC, DTS, or an explicit Apple engineer statement.</p>
+
+        <div class="evidence-list">
+          <article class="evidence-row evidence-confirmed">
+            <div class="evidence-marker"><span>A</span></div>
+            <div>
+              <p class="status">Apple Confirmed</p>
+              <p>Supported by Apple documentation, release notes, WWDC, DTS, or an explicit Apple engineer statement.</p>
+            </div>
           </article>
-          <article class="evidence-card evidence-reproduced">
-            <p class="status">Reproduced</p>
-            <p>Consistently observed in controlled testing, but not documented as a platform contract.</p>
+          <article class="evidence-row evidence-reproduced">
+            <div class="evidence-marker"><span>R</span></div>
+            <div>
+              <p class="status">Reproduced</p>
+              <p>Consistently observed in controlled testing, but not documented as a platform contract.</p>
+            </div>
           </article>
-          <article class="evidence-card evidence-inferred">
-            <p class="status">Inferred</p>
-            <p>Derived from logs, experiments, implementation behavior, or other engineering observations.</p>
+          <article class="evidence-row evidence-inferred">
+            <div class="evidence-marker"><span>I</span></div>
+            <div>
+              <p class="status">Inferred</p>
+              <p>Derived from logs, experiments, implementation behavior, or other engineering observations.</p>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
     <section class="section shell" aria-labelledby="workflow-heading">
-      <div class="section-heading compact">
-        <p class="eyebrow">Investigation model</p>
-        <h2 id="workflow-heading">From observable failure to verifiable engineering guidance</h2>
+      <div class="section-heading workflow-heading">
+        <p class="section-kicker">Investigation model</p>
+        <h2 id="workflow-heading">From observable failure to verifiable engineering guidance.</h2>
       </div>
-      <ol class="flow" aria-label="Investigation flow">
-        <li><span>1</span><strong>Problem</strong><small>Start with what can be observed.</small></li>
-        <li><span>2</span><strong>Evidence</strong><small>Grade the supporting signals.</small></li>
-        <li><span>3</span><strong>Platform behavior</strong><small>Locate the governing boundary.</small></li>
-        <li><span>4</span><strong>Guideline</strong><small>State the engineering action.</small></li>
-        <li><span>5</span><strong>Verification</strong><small>Define how to prove it.</small></li>
+
+      <ol class="workflow" aria-label="Investigation flow">
+        <li>
+          <span class="workflow-index">01</span>
+          <div><strong>Problem</strong><small>State what can be observed.</small></div>
+        </li>
+        <li>
+          <span class="workflow-index">02</span>
+          <div><strong>Evidence</strong><small>Grade the supporting signals.</small></div>
+        </li>
+        <li>
+          <span class="workflow-index">03</span>
+          <div><strong>Platform behavior</strong><small>Locate the governing boundary.</small></div>
+        </li>
+        <li>
+          <span class="workflow-index">04</span>
+          <div><strong>Guideline</strong><small>State the engineering action.</small></div>
+        </li>
+        <li>
+          <span class="workflow-index">05</span>
+          <div><strong>Verification</strong><small>Define how to prove it.</small></div>
+        </li>
       </ol>
     </section>
 
-    <section class="section section-muted" aria-labelledby="links-heading">
+    <section class="resources-section" aria-labelledby="links-heading">
       <div class="shell">
-        <div class="section-heading compact">
-          <p class="eyebrow">Start here</p>
-          <h2 id="links-heading">Use GitHub as the live knowledge base</h2>
+        <div class="section-heading resources-heading">
+          <p class="section-kicker">Start here</p>
+          <h2 id="links-heading">Use GitHub as the live knowledge base.</h2>
         </div>
-        <div class="link-grid">
+
+        <div class="resource-list">
           <a class="resource-link" href="https://github.com/chinhbui/apple-platform-issue-guide/issues">
-            <strong>GitHub Issues</strong>
-            <span>Search incidents, symptoms, APIs, error codes, and platform behavior.</span>
+            <span class="resource-code">SEARCH</span>
+            <span class="resource-body"><strong>GitHub Issues</strong><small>Incidents, symptoms, APIs, error codes, and platform behavior.</small></span>
+            <span class="resource-arrow" aria-hidden="true">↗</span>
           </a>
           <a class="resource-link" href="https://github.com/chinhbui/apple-platform-issue-guide/blob/main/docs/labels.md">
-            <strong>Label taxonomy</strong>
-            <span>Filter by framework, area, kind, evidence, source, platform, and triage state.</span>
+            <span class="resource-code">FILTER</span>
+            <span class="resource-body"><strong>Label taxonomy</strong><small>Framework, area, kind, evidence, source, platform, and triage state.</small></span>
+            <span class="resource-arrow" aria-hidden="true">↗</span>
           </a>
           <a class="resource-link" href="https://github.com/chinhbui/apple-platform-issue-guide/blob/main/docs/issue-authoring-guide.md">
-            <strong>Issue authoring guide</strong>
-            <span>Write compact engineering decision records with explicit evidence discipline.</span>
+            <span class="resource-code">WRITE</span>
+            <span class="resource-body"><strong>Issue authoring guide</strong><small>Compact engineering decision records with explicit evidence discipline.</small></span>
+            <span class="resource-arrow" aria-hidden="true">↗</span>
           </a>
           <a class="resource-link" href="https://github.com/chinhbui/apple-platform-issue-guide/blob/main/examples/avplayer-live-edge.md">
-            <strong>Example investigation</strong>
-            <span>See the expected structure for a complete AVPlayer investigation.</span>
+            <span class="resource-code">EXAMPLE</span>
+            <span class="resource-body"><strong>Example investigation</strong><small>A complete AVPlayer investigation from symptom through verification.</small></span>
+            <span class="resource-arrow" aria-hidden="true">↗</span>
           </a>
           <a class="resource-link" href="https://github.com/chinhbui/apple-platform-issue-guide/blob/main/CONTRIBUTING.md">
-            <strong>Contributing</strong>
-            <span>Review source quality, writing style, and verification requirements.</span>
+            <span class="resource-code">REVIEW</span>
+            <span class="resource-body"><strong>Contributing</strong><small>Source quality, writing style, and verification requirements.</small></span>
+            <span class="resource-arrow" aria-hidden="true">↗</span>
           </a>
           <a class="resource-link" href="https://github.com/chinhbui/apple-platform-issue-guide/labels">
-            <strong>Browse labels</strong>
-            <span>Jump directly into the repository's structured issue taxonomy.</span>
+            <span class="resource-code">BROWSE</span>
+            <span class="resource-body"><strong>Browse labels</strong><small>Jump into the repository's structured issue taxonomy.</small></span>
+            <span class="resource-arrow" aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
@@ -148,8 +237,8 @@
 
   <footer class="site-footer">
     <div class="shell footer-inner">
-      <p>Apple Platform Issue Guide</p>
-      <p>Problem → Evidence → Platform behavior → Engineering guideline → Verification</p>
+      <p><strong>Apple Platform Issue Guide</strong><span>Independent engineering reference</span></p>
+      <p class="footer-method">Problem <span>→</span> Evidence <span>→</span> Platform behavior <span>→</span> Guideline <span>→</span> Verification</p>
     </div>
   </footer>
 </body>
