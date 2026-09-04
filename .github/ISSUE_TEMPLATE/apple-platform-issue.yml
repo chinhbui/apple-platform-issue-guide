@@ -2,7 +2,7 @@ name: Apple platform issue
 description: Capture an Apple-reported or reproducible platform issue and its engineering guideline.
 title: "[Area] "
 labels:
-  - status:investigating
+  - triage/investigating
 body:
   - type: markdown
     attributes:
