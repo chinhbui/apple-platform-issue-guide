@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apple Platform Issue Guide</title>
+  <meta name="description" content="Evidence-graded engineering guidance for diagnosing Apple platform media playback issues across AVFoundation, HLS, FairPlay, CoreMedia, iOS, and tvOS.">
+  <link rel="canonical" href="https://chinhbui.github.io/apple-platform-issue-guide/">
+  <meta property="og:title" content="Apple Platform Issue Guide">
+  <meta property="og:description" content="Evidence-graded engineering guidance for diagnosing Apple media playback issues.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chinhbui.github.io/apple-platform-issue-guide/">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="https://chinhbui.github.io/apple-platform-issue-guide/" aria-label="Apple Platform Issue Guide home">
+        <span class="brand-mark" aria-hidden="true">AP</span>
+        <span>Apple Platform Issue Guide</span>
+      </a>
+      <nav class="header-nav" aria-label="Primary">
+        <a href="https://github.com/chinhbui/apple-platform-issue-guide/issues">Issues</a>
+        <a href="https://github.com/chinhbui/apple-platform-issue-guide">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero shell">
+      <p class="eyebrow">Evidence-graded engineering knowledge base</p>
+      <h1>Diagnose Apple media playback behavior with evidence, not folklore.</h1>
+      <p class="hero-copy">
+        A practical guide for investigating AVFoundation, AVPlayer, HLS and LL-HLS, FairPlay Streaming,
+        CoreMedia, and related behavior across Apple platforms.
+      </p>
+      <div class="actions">
+        <a class="button button-primary" href="https://github.com/chinhbui/apple-platform-issue-guide/issues">Browse issues</a>
+        <a class="button button-secondary" href="https://github.com/chinhbui/apple-platform-issue-guide">View repository on GitHub</a>
+      </div>
+      <p class="notice">This is not an official Apple repository. Inferred behavior is an implementation observation, not an Apple platform contract.</p>
+    </section>
+
+    <section class="section shell" aria-labelledby="coverage-heading">
+      <div class="section-heading">
+        <p class="eyebrow">Coverage</p>
+        <h2 id="coverage-heading">Focused on real playback failure boundaries</h2>
+      </div>
+      <div class="grid grid-three">
+        <article class="card">
+          <h3>Playback</h3>
+          <p>AVFoundation, AVPlayer, AVKit, media selection, stalls, live-edge behavior, and playback state.</p>
+          <div class="tags" aria-label="Playback topics">
+            <span>AVFoundation</span><span>AVPlayer</span><span>AVKit</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Streaming</h3>
+          <p>HLS, LL-HLS, ABR, alternate audio, playlist freshness, live latency, and rendition switching.</p>
+          <div class="tags" aria-label="Streaming topics">
+            <span>HLS</span><span>LL-HLS</span><span>ABR</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>DRM &amp; media pipeline</h3>
+          <p>FairPlay Streaming, content-key lifecycle, CoreMedia, VideoToolbox, and encrypted playback diagnostics.</p>
+          <div class="tags" aria-label="DRM and media topics">
+            <span>FairPlay</span><span>CoreMedia</span><span>VideoToolbox</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-muted" aria-labelledby="evidence-heading">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Evidence model</p>
+          <h2 id="evidence-heading">Every conclusion states how strongly it is supported</h2>
+        </div>
+        <div class="grid grid-three evidence-grid">
+          <article class="evidence-card evidence-confirmed">
+            <p class="status">Apple Confirmed</p>
+            <p>Supported by Apple documentation, release notes, WWDC, DTS, or an explicit Apple engineer statement.</p>
+          </article>
+          <article class="evidence-card evidence-reproduced">
+            <p class="status">Reproduced</p>
+            <p>Consistently observed in controlled testing, but not documented as a platform contract.</p>
+          </article>
+          <article class="evidence-card evidence-inferred">
+            <p class="status">Inferred</p>
+            <p>Derived from logs, experiments, implementation behavior, or other engineering observations.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" aria-labelledby="workflow-heading">
+      <div class="section-heading compact">
+        <p class="eyebrow">Investigation model</p>
+        <h2 id="workflow-heading">From observable failure to verifiable engineering guidance</h2>
+      </div>
+      <ol class="flow" aria-label="Investigation flow">
+        <li><span>1</span><strong>Problem</strong><small>Start with what can be observed.</small></li>
+        <li><span>2</span><strong>Evidence</strong><small>Grade the supporting signals.</small></li>
+        <li><span>3</span><strong>Platform behavior</strong><small>Locate the governing boundary.</small></li>
+        <li><span>4</span><strong>Guideline</strong><small>State the engineering action.</small></li>
+        <li><span>5</span><strong>Verification</strong><small>Define how to prove it.</small></li>
+      </ol>
+    </section>
+
+    <section class="section section-muted" aria-labelledby="links-heading">
+      <div class="shell">
+        <div class="section-heading compact">
+          <p class="eyebrow">Start here</p>
+          <h2 id="links-heading">Use GitHub as the live knowledge base</h2>
+        </div>
+        <div class="link-grid">
+          <a class="resource-link" href="https://github.com/chinhbui/apple-platform-issue-guide/issues">
+            <strong>GitHub Issues</strong>
+            <span>Search incidents, symptoms, APIs, error codes, and platform behavior.</span>
+          </a>
+          <a class="resource-link" href="https://github.com/chinhbui/apple-platform-issue-guide/blob/main/docs/labels.md">
+            <strong>Label taxonomy</strong>
+            <span>Filter by framework, area, kind, evidence, source, platform, and triage state.</span>
+          </a>
+          <a class="resource-link" href="https://github.com/chinhbui/apple-platform-issue-guide/blob/main/docs/issue-authoring-guide.md">
+            <strong>Issue authoring guide</strong>
+            <span>Write compact engineering decision records with explicit evidence discipline.</span>
+          </a>
+          <a class="resource-link" href="https://github.com/chinhbui/apple-platform-issue-guide/blob/main/examples/avplayer-live-edge.md">
+            <strong>Example investigation</strong>
+            <span>See the expected structure for a complete AVPlayer investigation.</span>
+          </a>
+          <a class="resource-link" href="https://github.com/chinhbui/apple-platform-issue-guide/blob/main/CONTRIBUTING.md">
+            <strong>Contributing</strong>
+            <span>Review source quality, writing style, and verification requirements.</span>
+          </a>
+          <a class="resource-link" href="https://github.com/chinhbui/apple-platform-issue-guide/labels">
+            <strong>Browse labels</strong>
+            <span>Jump directly into the repository's structured issue taxonomy.</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>Apple Platform Issue Guide</p>
+      <p>Problem → Evidence → Platform behavior → Engineering guideline → Verification</p>
+    </div>
+  </footer>
+</body>
+</html>
