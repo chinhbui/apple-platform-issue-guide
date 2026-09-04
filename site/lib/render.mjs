@@ -79,7 +79,7 @@ export function anchorHeadings(html = '') {
   return { html: rendered, headings };
 }
 
-function documentHead({ title, description, canonical, assetPrefix = './' }) {
+function documentHead({ title, description, canonical, assetPrefix = './', ogType = 'article' }) {
   const safeTitle = escapeHtml(title);
   const safeDescription = escapeHtml(description);
   const safeCanonical = escapeHtml(canonical);
@@ -94,7 +94,7 @@ function documentHead({ title, description, canonical, assetPrefix = './' }) {
   <meta name="theme-color" content="#f4f1ea">
   <meta property="og:title" content="${safeTitle}">
   <meta property="og:description" content="${safeDescription}">
-  <meta property="og:type" content="article">
+  <meta property="og:type" content="${escapeHtml(ogType)}">
   <meta property="og:url" content="${safeCanonical}">
   <link rel="stylesheet" href="${assetPrefix}styles.css">
 </head>`;
@@ -172,6 +172,7 @@ export function renderIndexPage({ issues = [], siteUrl }) {
     description,
     canonical: `${baseUrl}/`,
     assetPrefix: './',
+    ogType: 'website',
   })}
 <body data-page="index">
 ${siteHeader({ homeHref: './' })}
@@ -209,7 +210,7 @@ ${siteHeader({ homeHref: './' })}
         <button type="submit">Search</button>
       </div>
       <div class="filter-row" aria-label="Common filters">
-        <a class="filter-chip filter-all" href="#investigations">All</a>
+        <a class="filter-chip filter-all" href="./#investigations">All</a>
         ${filterLinks}
       </div>
     </form>
@@ -228,7 +229,7 @@ ${siteHeader({ homeHref: './' })}
   </section>
 </main>
 <footer class="site-footer"><div class="shell footer-inner"><span>Apple Platform Issue Guide</span><a href="${REPO_URL}">GitHub source ↗</a></div></footer>
-<script src="./client.js" defer></script>
+<script src="./client.js" type="module"></script>
 </body>
 </html>`;
 }
@@ -292,7 +293,7 @@ ${siteHeader({ homeHref: '../../' })}
   </div>
 </main>
 <footer class="site-footer"><div class="shell footer-inner"><a href="../../">← All investigations</a><a href="${REPO_URL}">Repository ↗</a></div></footer>
-<script src="../../client.js" defer></script>
+<script src="../../client.js" type="module"></script>
 </body>
 </html>`;
 }
