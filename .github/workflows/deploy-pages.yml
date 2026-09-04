@@ -8,10 +8,20 @@ on:
     paths:
       - "site/**"
       - ".github/workflows/deploy-pages.yml"
+  issues:
+    types:
+      - opened
+      - edited
+      - deleted
+      - closed
+      - reopened
+      - labeled
+      - unlabeled
   workflow_dispatch:
 
 permissions:
   contents: read
+  issues: read
   pages: write
   id-token: write
 
@@ -27,13 +37,27 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run site tests
+        run: node --test site/tests/*.test.mjs
+
+      - name: Build linkable knowledge base
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SITE_URL: https://chinhbui.github.io/apple-platform-issue-guide
+        run: node site/build.mjs --output _site
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./site
+          path: ./_site
 
   deploy:
     runs-on: ubuntu-latest

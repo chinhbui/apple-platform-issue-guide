@@ -1,0 +1,32 @@
+[
+  {
+    "number": 6,
+    "title": "[HLS] Short looping streams re-request segments because HLS playback is not disk-cached by default",
+    "state": "open",
+    "html_url": "https://github.com/chinhbui/apple-platform-issue-guide/issues/6",
+    "body_html": "<h2>Problem</h2><p>AVPlayer requests the same HLS media again on later loops.</p><h2>Evidence level</h2><p><strong>Apple Confirmed.</strong></p><h2>Solution / Guideline</h2><p>Use an explicit persistence path when persistent reuse is required.</p><h2>Verification</h2><p>Compare remote HLS and downloaded HLS.</p>",
+    "labels": [
+      {"name": "framework/avfoundation"},
+      {"name": "area/hls"},
+      {"name": "platform/ios"},
+      {"name": "evidence/apple-confirmed"}
+    ],
+    "created_at": "2026-09-04T01:13:41Z",
+    "updated_at": "2026-09-04T01:13:41Z"
+  },
+  {
+    "number": 5,
+    "title": "[FairPlay] SDK 26 rejects SPC when certificate-bundle credentials are mismatched or unreadable",
+    "state": "open",
+    "html_url": "https://github.com/chinhbui/apple-platform-issue-guide/issues/5",
+    "body_html": "<h2>Problem</h2><p>SPC generation fails with invalid certificate bundle credentials.</p><h2>Investigation</h2><p>Separate certificate parsing from key-session state.</p><h2>Verification</h2><p>Validate the bundle and credentials independently.</p>",
+    "labels": [
+      {"name": "framework/avfoundation"},
+      {"name": "area/fairplay"},
+      {"name": "platform/ios"},
+      {"name": "evidence/reproduced"}
+    ],
+    "created_at": "2026-09-03T01:00:00Z",
+    "updated_at": "2026-09-04T02:00:00Z"
+  }
+]
