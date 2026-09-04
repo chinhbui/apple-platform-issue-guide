@@ -45,11 +45,13 @@ test('index page links each investigation to its stable site URL', () => {
   });
 
   assert.match(html, /href="\.\/issues\/6\/"/);
+  assert.match(html, /property="og:type" content="website"/);
   assert.match(html, /data-issue-card/);
   assert.match(html, /data-search=/);
   assert.match(html, /data-labels=/);
   assert.match(html, /name="q"/);
   assert.match(html, /\?label=area%2Fhls/);
+  assert.match(html, /<script src="\.\/client\.js" type="module"><\/script>/);
 });
 
 test('issue page exposes canonical document and section links', () => {
@@ -59,9 +61,11 @@ test('issue page exposes canonical document and section links', () => {
   });
 
   assert.match(html, /rel="canonical" href="https:\/\/chinhbui\.github\.io\/apple-platform-issue-guide\/issues\/6\/"/);
+  assert.match(html, /property="og:type" content="article"/);
   assert.match(html, /href="https:\/\/github\.com\/chinhbui\/apple-platform-issue-guide\/issues\/6"/);
   assert.match(html, /id="problem"/);
   assert.match(html, /href="#evidence-level"/);
   assert.match(html, /href="#verification"/);
   assert.match(html, /data-copy-link/);
+  assert.match(html, /<script src="\.\.\/\.\.\/client\.js" type="module"><\/script>/);
 });
