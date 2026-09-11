@@ -9,10 +9,10 @@ This is **not an official Apple repository**. Behavior marked as inferred is an 
 ## Start here
 
 - [Browse issues](https://github.com/chinhbui/apple-platform-issue-guide/issues) — search known symptoms, APIs, error codes, and platform behavior.
-- [Example investigation](examples/avplayer-live-edge.md) — see the expected structure of an engineering entry.
+- [Example investigation](examples/ll-hls-manual-subtitle-selection.md) — see the expected structure of an engineering entry.
 - [Issue authoring guide](docs/issue-authoring-guide.md) — how to document a new issue.
 - [Label taxonomy](docs/labels.md) — framework, area, kind, evidence, source, platform, triage, and resolution labels.
-- [Contributing](CONTRIBUTING.md) — contribution and evidence requirements.
+- [Contributing](CONTRIBUTING.md) — contribution and evidence requirements.\n- [License](LICENSE) — CC BY 4.0 for engineering content and MIT for code/automation.
 
 ## What this repository provides
 
@@ -97,7 +97,7 @@ A useful issue should be readable as a small investigation report rather than a 
 | **Verification** | Define steps and expected signals that another engineer can reproduce. |
 | **References** | Link related Apple documentation, standards, WWDC sessions, and issues. |
 
-See [the example AVPlayer live-edge investigation](examples/avplayer-live-edge.md) for a complete entry.
+See [the LL-HLS manual subtitle-selection investigation](examples/ll-hls-manual-subtitle-selection.md) for a complete, source-backed entry.
 
 ## What belongs here
 
@@ -129,6 +129,10 @@ For the complete authoring rules, see:
 - [Issue authoring guide](docs/issue-authoring-guide.md)
 - [Label taxonomy](docs/labels.md)
 - [Apple platform issue template](.github/ISSUE_TEMPLATE/apple-platform-issue.yml)
+
+## License
+
+Engineering content is licensed under **CC BY 4.0**. Source code and automation are licensed under the **MIT License**. See [LICENSE](LICENSE) for scope and terms.
 
 ## Repository principle
 
