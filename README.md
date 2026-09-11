@@ -12,7 +12,8 @@ This is **not an official Apple repository**. Behavior marked as inferred is an 
 - [Example investigation](examples/ll-hls-manual-subtitle-selection.md) — see the expected structure of an engineering entry.
 - [Issue authoring guide](docs/issue-authoring-guide.md) — how to document a new issue.
 - [Label taxonomy](docs/labels.md) — framework, area, kind, evidence, source, platform, triage, and resolution labels.
-- [Contributing](CONTRIBUTING.md) — contribution and evidence requirements.\n- [License](LICENSE) — CC BY 4.0 for engineering content and MIT for code/automation.
+- [Contributing](CONTRIBUTING.md) — contribution and evidence requirements.
+- [License](LICENSE) — CC BY 4.0 for engineering content and MIT for code/automation.
 
 ## What this repository provides
 
