@@ -48,13 +48,6 @@ async function build({ output, fixture }) {
   await copyFile(join(siteDir, 'styles.css'), join(outputDir, 'styles.css'));
   await copyFile(join(siteDir, 'client.js'), join(outputDir, 'client.js'));
 
-  // Publish standalone interactive demos alongside the generated knowledge base.
-  const engineDemoDir = join(outputDir, 'demos', 'bmw-inline-six');
-  await mkdir(engineDemoDir, { recursive: true });
-  await copyFile(
-    join(siteDir, 'demos', 'bmw-inline-six', 'index.html'),
-    join(engineDemoDir, 'index.html'),
-  );
   await writeFile(join(outputDir, 'index.html'), renderIndexPage({ issues, siteUrl }), 'utf8');
 
   for (const issue of issues) {
